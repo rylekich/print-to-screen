@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print to screen</title>
+    <style>
+
+        section{
+            height:100vh;
+        }
+
+        section p {
+            font-size: 6em;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            letter-spacing: -2px;
+            margin: 0;
+        }
+
+        input{
+            height: 100px;
+            width: 100px;
+        }
+
+        main{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+    </style>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <section id="left">
+
+        <div id="wrap">
+            <svg id="ellipse" version="1.1" viewBox="0 0 1000 1000">
+                <path id="thePath" fill="transparent" 
+                d="M100,500
+                A400,400 0 0 0 900 500 
+                A400,400 0 0 0 100 500"  />
+        
+               <text>
+                  <textPath xlink:href="#thePath" dy="5" id="tp" lengthAdjust="spacingAndGlyphs"> We can go out for drinks after you're done. <input type="checkbox"> </textPath> 
+                </text>
+
+            </svg>
+        </div>
+
+                <input type="checkbox">
+
+                <!-- <p>
+                    Common to the research perspectives on boredom in work organizations, which no doubt have important practical value, is not only that they barely discuss the experience of boredom, but also that they approach the phenomenon from an angle that will ultimately be counterintuitive to the bored. </p>
+                    <input type="checkbox">
+
+                   <p>This in a way is quite understandable, for we feel that we know what boredom is like anyway. </p>
+                   <input type="checkbox">
+
+                <p>
+                    But in reality this description does not come close to how the bored experience boredom. If we ignore for a moment the argument that it might be reasonable to make a distinction between the everyday kind of boredom in the example above and a deeper, more pervasive experience like the tedium vitae, then Seneca’s description may help us understand why this is so: 
+                </p>
+                <input type="checkbox">
+
+                <p>
+                    How long the same things? Surely I will yawn, I will sleep, I will eat, I will be thirsty, I will be cold, I will be hot. Is there no end? But do all things go in a circle? Night overcomes day, day night, summer gives way to autumn, winter presses on autumn, which is checked by spring. All things pass that they may return. I do nothing new, I see nothing new. Sometimes this makes me seasick [fit aliquando et huiusreinausia]. There are many who judge living not painful but empty. (Seneca, 2004: 120) 
+                </p> -->
+        </section>
+    
+        <section id="right"></section>
+    </main>
+    
+    
+    <script>
+        // when you click or "complete" one task another one appears
+        var allInputs = document.getElementsByTagName("input");
+        const rightSection = document.getElementById('right')
+
+        for (let i = 0; i < allInputs.length; i++){
+
+
+            allInputs[i].addEventListener('click', function(){
+
+                console.log(this.type);
+
+                const newInput = document.createElement("input")
+                newInput.setAttribute("type", this.type)
+
+                rightSection.appendChild(newInput)
+            })
+
+        }
+
+        // code from user enxaneta on stackoverflow: https://stackoverflow.com/questions/56041826/animate-marquee-on-svg-curve 
+
+            function Init() {
+            let w = wrap.clientWidth;
+            let h = wrap.clientHeight;
+
+            ellipse.setAttributeNS(null, "viewBox", `0 0 ${w}  ${h}`);
+            let d = `M${w / 10},${h / 2} 
+            A${4 * w / 10},${4 * h / 10} 0 0 0 ${9 * w / 10} ${5 * h / 10} 
+            A${4 * w / 10},${4 * h / 10} 0 0 0 ${w / 10} ${5 *h / 10} 
+            A${4 * w / 10},${4 * h / 10} 0 0 0 ${9 * w / 10} ${5 * h / 10} 
+            A${4 * w / 10},${4 * h / 10} 0 0 0 ${w / 10} ${5 * h / 10}`;
+
+            thePath.setAttributeNS(null, "d", d);
+            let path_length =  thePath.getTotalLength();
+            
+            
+            //begin at a bigger size than needed
+            let font_size = 100;
+            ellipse.style.fontSize = font_size+"px"; 
+            
+            // while the text length is bigger than half path length 
+            while(tp.getComputedTextLength() > path_length / 2 ){
+                //reduce the font size
+                font_size -=.25;
+                //reset the font size 
+                ellipse.style.fontSize = font_size+"px";
+            }
+            }
+
+
+
+            window.setTimeout(function() {
+            Init();
+
+            window.addEventListener("resize", Init, false);
+            }, 30);
+
+            let so = 0;
+
+            function Marquee() {
+            requestAnimationFrame(Marquee);
+            tp.setAttributeNS(null, "startOffset", so + "%");
+            if (so >= 50) {
+                so = 0;
+            }
+            so += 0.02;
+            }
+
+            Marquee(); 
+
+
+
+    </script>
+</body>
+</html>

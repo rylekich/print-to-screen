@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+
+        section{
+            margin: 0 auto;
+            width: 65ch;
+        }
+ 
+        p span{
+        font-size: 2em;
+        }
+
+        /* p span:hover::after {
+        content: url(https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2018/07/01153710/benefits-of-working-from-home-1024x512.jpg);
+        } */
+
+        p span:nth-child(1n):hover::before {
+        content: url(https://3mizy13z0lac30t3qw3dz1bj-wpengine.netdna-ssl.com/wp-content/uploads/2021/07/Lifestyle-influencers-.jpg);
+        } 
+
+       p span:nth-child(2n):hover::before {
+        content: url(https://fjwp.s3.amazonaws.com/blog/wp-content/uploads/2018/07/01153710/benefits-of-working-from-home-1024x512.jpg);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p>
+            Get your fucking ass up and work. It seems like nobody wants to work these days.
+            
+            You have to surround yourself with people that want to work. Have a good work environment where everyone loves what they do because you have one life.
+
+            No toxic work environments... show up and do the work.
+            
+            We focus on the positive. We work our asses off. If that’s what you think, then sorry. We just don’t have the energy for that. 
+            
+            We don’t have to sing or dance or act; we get to live our lives — and hey, we made it. 
+            
+            I don’t know what to tell you. I'm just saying the facts, With all respect, and with love, I’m not, like, being a bitch. 
+            
+            Am I exhausted? Yes, of course, but I’ve come too far.
+        </p>
+    </section>
+        
+
+    <!-- <div>ad for skincare</div>
+    <div>war videos</div>
+    <div>thirst traps</div>
+    infinite scroll
+    <div>leftist bimbo tiktok</div>
+    <div>compounded references, meme centipede</div> -->
+
+<script>
+    $(document).ready(function() {
+        'use strict'
+
+        function _toArray(arr) { return Array.isArray(arr) ? arr : Array.from(arr) }
+
+        function makeSpans (selector) {
+        var _document$querySelect = document.querySelectorAll(selector)
+        var _document$querySelect2 = _toArray(_document$querySelect)
+        var elements = _document$querySelect2.slice(0)
+
+        return elements.map(function (element) {
+            var text = element.innerText.split('')
+            var spans = text.map(function (letter) {
+            return '<span>' + letter + '</span>'
+            }).join('')
+            return element.innerHTML = spans
+        })
+        }
+
+        // usage with single selector
+        makeSpans('p')
+        });
+</script>
+    
+</body>
+</html>

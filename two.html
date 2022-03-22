@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        input#first,
+        input#second{
+            grid-area: 1/1;
+            height: 100px;
+            width: 100px;
+        }
+
+        #second{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <input id="first" type="checkbox">
+        <input id="second" type="checkbox">
+        <div>
+            <p>
+                Common to the research perspectives on boredom in work organizations, which no doubt have important practical value, is not only that they barely discuss the experience of boredom, but also that they approach the phenomenon from an angle that will ultimately be counterintuitive to the bored. This in a way is quite understandable, for we feel that we know what boredom is like anyway. Take an everyday situation like a late afternoon lecture on the subtleties of film noir minimalism in Jean-Pierre Melville’s Bob le flambeur (1955). This lecture may be very boring to me. But it may be a hit with my more Francophile colleague, who as we make our way home afterwards cannot stop talking about it. Boredom, in other words, appears to be a subjective interpretation of a given situation or of a discrete object, which is waiting for us to reflect on it. Whether we focus on the causes of boredom or on boredom proneness, this is the adopted perspective.
+            </p>
+
+            <p>
+                But in reality this description does not come close to how the bored experience boredom. If we ignore for a moment the argument that it might be reasonable to make a distinction between the everyday kind of boredom in the example above and a deeper, more pervasive experience like the tedium vitae, then Seneca’s description may help us understand why this is so: 
+            </p>
+
+            <p>
+                How long the same things? Surely I will yawn, I will sleep, I will eat, I will be thirsty, I will be cold, I will be hot. Is there no end? But do all things go in a circle? Night overcomes day, day night, summer gives way to autumn, winter presses on autumn, which is checked by spring. All things pass that they may return. I do nothing new, I see nothing new. Sometimes this makes me seasick [fit aliquando et huiusreinausia]. There are many who judge living not painful but empty. (Seneca, 2004: 120) 
+            </p>
+
+            <p>
+                What Seneca presents us with here, is not a two-stage act of receiving a neutral object and then glossing it over with an interpretation. No organization is made by a reflection subsequent to the experience of the phenomenon that appears. No raw material is given external to the self-sameness of the world that makes the bored think of life as empty (as this would make his initial question easy to answer). Rather, it is the other way around. The unbearable presence and clarity of a world that makes the bored nauseous in all its obviousness is conditioned by the experience itself. It is the experience of the world as a tautology that gives him access to the ‘materiality’ of reality. In Heidegger’s terms, Seneca’s tedium vitae is ‘world-disclosive’. The primary is not a situation in which he ‘chooses’ how to deal with the objects that he is facing and then finds them boring, it is his experience itself that is without qualities. 
+            </p>
+
+           <p>
+                What is uncovered here is an experience of boredom that is not as simple as it was made out to be above. We find ourselves suddenly confronted with a new field of inquiry that is concerned with discerning and evaluating the interpretive situation, which makes the world appear as it does and which confronts the forms and limits of our powers of interpretation. It is a situation that reveals something about us, about who we are, where we come from, what we hope for and – not least – what interests us. Another way to put this is to say that in the experience of boredom, identity is turned into a problem, a question, into something fundamentally precarious. 
+           </p> 
+
+        </div>
+    </main>
+
+    <aside id="right">
+
+    </aside>
+    
+    <script>
+        // when you click or "complete" one task another one appears
+        var allInputs = document.getElementsByTagName("input");
+        const aside = document.getElementById('right')
+
+        for (let i = 0; i < allInputs.length; i++){
+
+
+            allInputs[i].addEventListener('click', function(){
+
+                console.log(this.type);
+
+                const newInput = document.createElement("input")
+                newInput.setAttribute("type", this.type)
+
+                aside.appendChild(newInput)
+            })
+
+        }
+
+    </script>
+</body>
+</html>
