@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Print 2 Screen</title>
+	<style type="text/css">
+		* {
+		  box-sizing: border-box;
+		}
+
+        html, body {margin: 0; height: 100%; overflow: hidden}
+
+        div.triangle {
+            width: 100%;
+            height: 400px;
+            float: right;
+            -webkit-shape-outside: polygon(0 0, 100% 0, 100% 100%);
+            shape-outside: polygon(0 0, 100% 0, 100% 100%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+        }
+
+
+        div.check-contain{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 5px 10px 10px;
+            border: 0.5px solid black;
+            border-radius: 10px;
+        }
+
+
+        a {
+            font-family: 'Ballet', cursive;
+            text-decoration: none;
+            color: magenta;
+            font-size: 4em;
+            transition: color .2s;
+
+        }
+
+        a:hover {
+            color: gold;
+
+        }
+
+        .link-a{
+            position: fixed;
+            top: 15%;
+            right: 15%;
+            z-index: 3;
+        }
+
+
+        .sparx{
+            pointer-events: none;
+        }
+
+
+        label{
+            text-transform: uppercase;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+		p {
+			text-align: justify;
+			font-size: 1.5em;
+            font-family: Helvetica, Arial, sans-serif;
+            letter-spacing: 1px;
+            line-height: 1.25;
+		}
+
+		input{
+			width: 100px;
+			height: 100px;
+		}
+
+        /* Base for label styling */
+        [type="checkbox"]:not(:checked),
+        [type="checkbox"]:checked {
+            position: absolute;
+            left: 0;
+            opacity: 0.01;
+        }
+        [type="checkbox"]:not(:checked) + label,
+        [type="checkbox"]:checked + label {
+            position: relative;
+            padding-left: 2.3em;
+            font-size: 1.05em;
+            line-height: 1.7;
+            cursor: pointer;
+        }
+
+        /* checkbox aspect */
+        [type="checkbox"]:not(:checked) + label:before,
+        [type="checkbox"]:checked + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.4em;
+            height: 1.4em;
+            border: 1px solid #aaa;
+            background: #FFF;
+            border-radius: .2em;
+            box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 rgba(203, 34, 237, .2);
+            -webkit-transition: all .275s;
+                    transition: all .275s;
+        }
+
+        /* checked mark aspect */
+        [type="checkbox"]:not(:checked) + label:after,
+        [type="checkbox"]:checked + label:after {
+            content: '✕';
+            position: absolute;
+            top: .525em;
+            left: 0.25em;
+            font-size: 1.375em;
+            /* color: #CB22ED; */
+            line-height: 0;
+            -webkit-transition: all .2s;
+                    transition: all .2s;
+        }
+
+        /* checked mark aspect changes */
+        [type="checkbox"]:not(:checked) + label:after {
+            opacity: 0;
+            -webkit-transform: scale(0) rotate(45deg);
+                    transform: scale(0) rotate(45deg);
+        }
+
+        [type="checkbox"]:checked + label:after {
+            opacity: 1;
+            -webkit-transform: scale(1) rotate(0);
+                    transform: scale(1) rotate(0);
+        }
+
+        /* Disabled checkbox */
+        [type="checkbox"]:disabled:not(:checked) + label:before,
+        [type="checkbox"]:disabled:checked + label:before {
+            box-shadow: none;
+            border-color: #bbb;
+            background-color: #e9e9e9;
+        }
+
+        [type="checkbox"]:disabled:checked + label:after {
+            color: #777;
+        }
+
+        [type="checkbox"]:disabled + label {
+            color: #aaa;
+        }
+
+        /* Accessibility */
+        [type="checkbox"]:checked:focus + label:before,
+        [type="checkbox"]:not(:checked):focus + label:before {
+            box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 6px rgba(203, 34, 237, .2);
+        }
+
+	</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Astloch&family=Ballet&family=Redacted+Script&family=Ruge+Boogie&display=swap" rel="stylesheet">
+	  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <main>
+        <div class="link-a">
+            <a href="nicki.html">Nicki</a>
+        </div>
+
+            <div class="check-contain">
+                <input id="sand" type="checkbox">
+                <label for="sand">Give 110%</label> 
+            </div>
+
+        <div class="triangle"></div>
+
+        <p id="msg">  </p>
+
+    </main>
+
+<script>
+     var allInputs = document.getElementsByTagName("input");
+
+     let input = document.createElement('input');
+     input.setAttribute('type', 'checkbox');
+     let msg = document.getElementById('msg')
+     msg.appendChild(input)
+
+     console.log(input);
+
+    for (let i = 0; i < allInputs.length; i++){
+
+        allInputs[i].addEventListener('click', function(){
+
+            var showText = function (target, message, index, interval) {   
+                    if (index < message.length) {
+                        $(target).append(message[index++]);
+                        setTimeout(function () { showText(target, message, index, interval); }, interval);
+                    }
+                }
+
+                $(function () {
+                    showText("#msg", `Or did you say it's the love of money that's the root of all evil? To love a thing is to know its nature. To love money is to know and love the fact that money is the creation of the best power within you, and your passkey to trade your effort for the effort of the best among men. It's the person who would sell his soul for a nickel, who is loudest in proclaiming his hatred of money - and he has good reason to hate it. The lovers of money are willing to work for it. They know they are able to deserve it.` , 0, 50);   
+                });
+        })
+    }
+
+    setInterval(function() {
+        document.getElementById('sand').checked = false;
+    }, 10 * 1000);
+
+</script>
+
+<script src="sparkle.js"></script>
+
+</body>
+</html>
